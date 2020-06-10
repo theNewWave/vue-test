@@ -11,6 +11,7 @@
 
 <script>
 import ToDo from './ToDo'
+import { mapGetters } from 'vuex'
 export default {
 	data() {
 		return {
@@ -22,12 +23,27 @@ export default {
 	},
     methods: {
         insert_todo(){
+            // let payload = {
+            //     "todo": this.todo,
+            // }
+			// this.$store.commit("set_todos", payload)
+
             let payload = {
-                "todo": this.todo,
+                "id": this.get_todo_obj.id,
+                "content": this.todo,
+                "user": "unknown",
+                "created_at": this.get_selected_date
             }
-            this.$store.commit("set_todos", payload)
+            this.$store.dispatch("insert_todo", payload)
         }
-    },
+	},
+	computed: {
+        ...mapGetters([
+			"get_todo",
+			"get_todo_obj",
+			"get_selected_date",
+        ])
+    }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <ul class="tasks">
     <li class="task" v-for="(item, index) in get_todos" :key="index">
-		{{ get_todos.todo }}
+		{{ item.todo }}
     </li>
   </ul>
 </template>
@@ -21,7 +21,7 @@ export default {
 
   computed: {
         ...mapGetters([
-            "get_todos",
+            "get_todo",
 		]),
   }
 }
